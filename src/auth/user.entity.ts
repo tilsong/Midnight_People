@@ -1,3 +1,5 @@
+import { Board } from 'src/boards/board.entity';
+import { OneToMany } from 'typeorm';
 import {
   BaseEntity,
   Column,
@@ -17,4 +19,7 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @OneToMany((type) => Board, (board) => board.user, { eager: true })
+  boards: Board[];
 }
